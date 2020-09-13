@@ -43,7 +43,7 @@ export default ({ modalOpen, setModalOpen }) => {
           style={styles.icon}
           onPress={() => setModalOpen(false)}
         >
-          <Ionicons name="ios-close-circle" size={30} color="#500000" />
+          <Ionicons name="ios-close-circle" size={30} color="#66aadb" />
         </TouchableOpacity>
         <Image source={require("../../assets/lot1.png")} style={styles.lot} />
         {cars.map((car, ind) => {

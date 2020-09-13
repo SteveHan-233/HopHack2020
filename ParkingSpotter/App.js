@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import Map from './src/screens/Map';
-import Signin from './src/screens/Signin';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { SafeAreaView } from "react-native";
+import Map from "./src/screens/Map";
+import Signin from "./src/screens/Signin";
 
 console.disableYellowBox = true;
 
@@ -11,7 +11,7 @@ export default function App() {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: '#500000',
+        backgroundColor: "#66aadb"
       }}
     >
       <StatusBar style="light" />

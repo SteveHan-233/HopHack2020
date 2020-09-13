@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   Animated,
-  Modal,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+  Modal
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -15,10 +15,10 @@ const SCALE = {
   getScaleTransformationStyle(animated, startSize = 1, endSize = 0.95) {
     const interpolation = animated.interpolate({
       inputRange: [0, 1],
-      outputRange: [startSize, endSize],
+      outputRange: [startSize, endSize]
     });
     return {
-      transform: [{ scale: interpolation }],
+      transform: [{ scale: interpolation }]
     };
   },
   pressInAnimation(animated, duration = 500) {
@@ -26,7 +26,7 @@ const SCALE = {
     Animated.timing(animated, {
       toValue: 1,
       duration,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start();
   },
   pressOutAnimation(animated, duration = 500) {
@@ -34,9 +34,9 @@ const SCALE = {
     Animated.timing(animated, {
       toValue: 0,
       duration,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start();
-  },
+  }
 };
 
 export default function ParkingMarker({ percentage }) {
@@ -46,7 +46,7 @@ export default function ParkingMarker({ percentage }) {
     <AnimatedTouchable
       style={[
         styles.container,
-        SCALE.getScaleTransformationStyle(scaleAnimated),
+        SCALE.getScaleTransformationStyle(scaleAnimated)
       ]}
       onPressIn={() => {
         SCALE.pressInAnimation(scaleAnimated);
@@ -64,20 +64,20 @@ export default function ParkingMarker({ percentage }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 50,
-    backgroundColor: '#500000',
+    backgroundColor: "#66aadb"
   },
   caricon: {
-    marginLeft: 30,
-    marginTop: 10,
+    marginLeft: 20,
+    marginTop: 10
   },
   percentage: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     fontSize: 18,
-    fontWeight: '800',
-    marginTop: -5,
-  },
+    fontWeight: "800",
+    marginTop: -15
+  }
 });
