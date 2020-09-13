@@ -1,45 +1,68 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import ParkingMarker from '../components/ParkingMarker';
-import ParkingModal from '../components/ParkingModal';
+import React, { useState, useEffect } from "react";
+import { Dimensions, StyleSheet } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import socket from "socket.io-client";
+
+import ParkingMarker from "../components/ParkingMarker";
+import ParkingModal from "../components/ParkingModal";
+import { lots } from "../const";
+
+const ENDPOINT = "http://b3c61720caab.ngrok.io";
 
 export default function Map() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [currLot, setCurrLot] = useState(null);
+  const [cars, setCars] = useState([[], [], [], [], [], []]);
+
+  useEffect(() => {
+    const s = socket(ENDPOINT);
+    console.log(s);
+    s.on("frame", data => {
+      console.log(data);
+      setCars(data);
+    });
+
+    return () => s.disconnect();
+  }, []);
   return (
     <>
       <MapView
         style={styles.mapStyle}
         initialRegion={{
-          latitude: 30.622307,
-          longitude: -96.34327,
-          latitudeDelta: 0.019,
-          longitudeDelta: 0.019,
+          latitude: 39.3303325,
+          longitude: -76.62163,
+          latitudeDelta: 0.007,
+          longitudeDelta: 0.007
         }}
         showsUserLocation
       >
-        {/* 30.6099° N, 96.3404° W */}
-        <Marker
-          coordinate={{ latitude: 30.622504, longitude: -96.342386 }}
-          onPress={() => setModalOpen(true)}
-        >
-          <ParkingMarker percentage={20} />
-        </Marker>
-        <Marker
-          coordinate={{ latitude: 30.6094, longitude: -96.341 }}
-          onPress={() => setModalOpen(true)}
-        >
-          <ParkingMarker percentage={30} />
-        </Marker>
+        {lots.map((lot, ind) => (
+          <Marker
+            coordinate={lot.coordinate}
+            onPress={() => {
+              setCurrLot(ind);
+              setModalOpen(true);
+            }}
+            key={ind}
+          >
+            <ParkingMarker percentage={60} />
+          </Marker>
+        ))}
       </MapView>
-      <ParkingModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <ParkingModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        setCurrLot={setCurrLot}
+        lotData={lots[currLot]}
+        carData={currLot !== null ? cars[currLot] : null}
+      />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height
+  }
 });
