@@ -12,18 +12,28 @@ const ENDPOINT = "http://b3c61720caab.ngrok.io";
 export default function Map() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currLot, setCurrLot] = useState(null);
-  const [cars, setCars] = useState([[], [], [], [], [], []]);
+  const [cars, setCars] = useState([[], [], [], [], [], [], [], [], []]);
 
-  useEffect(() => {
-    const s = socket(ENDPOINT);
-    console.log(s);
-    s.on("frame", data => {
-      console.log(data);
-      setCars(data);
-    });
+  // useEffect(() => {
+  //   const s = socket(ENDPOINT);
+  //   console.log(s);
+  //   s.on("frame", data => {
+  //     console.log(data);
+  //     setCars(data);
+  //   });
 
-    return () => s.disconnect();
-  }, []);
+  //   return () => s.disconnect();
+  // }, []);
+
+  // useEffect(async () => {
+  //   const f = require("../components/precompute.json");
+  //   for (arr of f) {
+  //     console.log(arr);
+  //     setCars(arr);
+  //     await delay(1000);
+  //   }
+  // }, []);
+
   return (
     <>
       <MapView
@@ -45,7 +55,11 @@ export default function Map() {
             }}
             key={ind}
           >
-            <ParkingMarker percentage={60} />
+            <ParkingMarker
+              percentage={lot.percentage}
+              wheelchair={lot.handicap}
+              electric={lot.electric}
+            />
           </Marker>
         ))}
       </MapView>

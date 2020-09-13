@@ -38,30 +38,69 @@ export const lot1CarPos = [
 
 export const lots = [
   {
+    name: "Homewood Field Lot",
+    coordinate: { latitude: 39.3341343, longitude: -76.6217785 },
+    handicap: true,
+    electric: false,
+    percentage: 14
+  },
+  {
     name: "North Visitor Lot",
-    coordinate: { latitude: 39.3329999, longitude: -76.6215783 }
+    coordinate: { latitude: 39.3329999, longitude: -76.6215783 },
+    handicap: false,
+    electric: false,
+    percentage: 36
+  },
+  {
+    name: "San Martin Garage",
+    coordinate: { latitude: 39.330434, longitude: -76.6267543 },
+    handicap: false,
+    electric: true,
+    percentage: 61
+  },
+  {
+    name: "115 University Parking Garage",
+    coordinate: { latitude: 39.3350728, longitude: -76.6227519 },
+    handicap: true,
+    electric: true,
+    percentage: 37
   },
   {
     name: "Hopkins Club Lot",
-    coordinate: { latitude: 39.329462, longitude: -76.6219141 }
+    coordinate: { latitude: 39.329462, longitude: -76.6219141 },
+    handicap: false,
+    electric: false,
+    percentage: 77
   },
   {
     name: "Alumni Memorial Residence Hall B Parking",
-    coordinate: { latitude: 39.3320488, longitude: -76.6200555 }
+    coordinate: { latitude: 39.3320488, longitude: -76.6200555 },
+    handicap: false,
+    electric: true,
+    percentage: 65
   },
   {
     name: "Levi/Mudd Lot",
-    coordinate: { latitude: 39.3314096, longitude: -76.621088 }
+    coordinate: { latitude: 39.3314096, longitude: -76.621088 },
+    handicap: true,
+    electric: false,
+    percentage: 86
   },
   {
     name: "Wyman East/West",
-    coordinate: { latitude: 39.3260266, longitude: -76.6250593 }
+    coordinate: { latitude: 39.3260266, longitude: -76.6250593 },
+    handicap: false,
+    electric: true,
+    percentage: 92
   },
   {
     name: "Interfaith Center Lot",
     coordinate: {
       latitude: 39.3316135,
       longitude: -76.6177166
-    }
+    },
+    handicap: true,
+    electric: true,
+    percentage: 20
   }
 ];

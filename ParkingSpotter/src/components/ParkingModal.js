@@ -12,15 +12,6 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 export default ({ modalOpen, setModalOpen, setCurrLot, lotData, carData }) => {
   const [cars, setCars] = useState([]);
 
-  // useEffect(async () => {
-  //   const f = require("./precompute.json");
-  //   for (arr of f) {
-  //     console.log(arr);
-  //     setCars(arr);
-  //     await delay(1000);
-  //   }
-  // }, []);
-
   return (
     <Modal
       animationType="slide"
@@ -47,7 +38,7 @@ export default ({ modalOpen, setModalOpen, setCurrLot, lotData, carData }) => {
         <Image source={require("../../assets/lot1.png")} style={styles.lot} />
         {carData !== null &&
           carData.map((car, ind) => {
-            if (car !== -1) return <Car ind={ind} />;
+            if (!car) return <Car ind={ind} />;
             else return <></>;
           })}
         {/* <Car ind={0} /> */}

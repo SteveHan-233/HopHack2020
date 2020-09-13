@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
@@ -7,7 +7,7 @@ import {
   Animated,
   Modal
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -39,8 +39,12 @@ const SCALE = {
   }
 };
 
-export default function ParkingMarker({ percentage }) {
+export default function ParkingMarker({ percentage, wheelchair, electric }) {
   const scaleAnimated = new Animated.Value(0);
+
+  useEffect(() => {
+    console.log(Math.random());
+  }, []);
 
   return (
     <AnimatedTouchable
@@ -57,7 +61,39 @@ export default function ParkingMarker({ percentage }) {
       activeOpacity={1}
     >
       <Ionicons name="ios-car" size={50} color="white" style={styles.caricon} />
-      <Text style={styles.percentage}>{percentage}%</Text>
+      <View style={styles.iconPanel}>
+        {wheelchair && (
+          <>
+            <View style={{ ...styles.icon, backgroundColor: "#00f" }}>
+              <FontAwesome5
+                name="wheelchair"
+                size={16}
+                color="white"
+                style={styles.wheelchair}
+              />
+            </View>
+            {electric && <View style={styles.spacer} />}
+          </>
+        )}
+        {electric && (
+          <View style={{ ...styles.icon, backgroundColor: "orange" }}>
+            <FontAwesome5
+              name="bolt"
+              size={16}
+              color="white"
+              style={styles.bolt}
+            />
+          </View>
+        )}
+      </View>
+      <Text
+        style={{
+          ...styles.percentage,
+          marginTop: wheelchair || electric ? 0 : 12
+        }}
+      >
+        {percentage}%
+      </Text>
     </AnimatedTouchable>
   );
 }
@@ -71,13 +107,34 @@ const styles = StyleSheet.create({
   },
   caricon: {
     marginLeft: 20,
-    marginTop: 10
+    marginTop: 5
+  },
+  iconPanel: {
+    flexDirection: "row",
+    marginTop: -25,
+    justifyContent: "center"
+  },
+  icon: {
+    height: 20,
+    width: 20,
+    color: "#fff",
+    borderRadius: 10
+  },
+  wheelchair: {
+    left: 2,
+    top: 2
+  },
+  spacer: {
+    width: 10
+  },
+  bolt: {
+    left: 5,
+    top: 2
   },
   percentage: {
     color: "white",
     textAlign: "center",
     fontSize: 18,
-    fontWeight: "800",
-    marginTop: -15
+    fontWeight: "800"
   }
 });
