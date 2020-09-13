@@ -14,25 +14,14 @@ export default function Map() {
   const [currLot, setCurrLot] = useState(null);
   const [cars, setCars] = useState([[], [], [], [], [], [], [], [], []]);
 
-  // useEffect(() => {
-  //   const s = socket(ENDPOINT);
-  //   console.log(s);
-  //   s.on("frame", data => {
-  //     console.log(data);
-  //     setCars(data);
-  //   });
+  useEffect(() => {
+    const s = socket(ENDPOINT);
+    s.on("frame", data => {
+      setCars(data);
+    });
 
-  //   return () => s.disconnect();
-  // }, []);
-
-  // useEffect(async () => {
-  //   const f = require("../components/precompute.json");
-  //   for (arr of f) {
-  //     console.log(arr);
-  //     setCars(arr);
-  //     await delay(1000);
-  //   }
-  // }, []);
+    return () => s.disconnect();
+  }, []);
 
   return (
     <>

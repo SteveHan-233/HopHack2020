@@ -4,8 +4,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Animated,
-  Modal
+  Animated
 } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
@@ -41,10 +40,6 @@ const SCALE = {
 
 export default function ParkingMarker({ percentage, wheelchair, electric }) {
   const scaleAnimated = new Animated.Value(0);
-
-  useEffect(() => {
-    console.log(Math.random());
-  }, []);
 
   return (
     <AnimatedTouchable

@@ -42,14 +42,14 @@ export const lots = [
     coordinate: { latitude: 39.3341343, longitude: -76.6217785 },
     handicap: true,
     electric: false,
-    percentage: 14
+    percentage: 36
   },
   {
     name: "North Visitor Lot",
     coordinate: { latitude: 39.3329999, longitude: -76.6215783 },
     handicap: false,
     electric: false,
-    percentage: 36
+    percentage: 14
   },
   {
     name: "San Martin Garage",
