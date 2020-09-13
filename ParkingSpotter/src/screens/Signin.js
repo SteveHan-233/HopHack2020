@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
+import React from "react";
+import { View, Image, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, TextInput } from "react-native-gesture-handler";
 
 export default ({ setAuthenticated }) => {
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/tamu.png')} style={styles.logo} />
+      <Image source={require("../../assets/hopkins.png")} style={styles.logo} />
       <Text style={styles.title}>
-        Please sign in with your TAMU email address to use the app
+        Please sign in with your John Hopkins email address to use the app
       </Text>
       <View style={styles.input}>
         <TextInput
@@ -37,43 +37,43 @@ export default ({ setAuthenticated }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#500000',
-    height: '100%',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 40,
+    backgroundColor: "#66aadb",
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 40
   },
   logo: {
     width: 120,
-    height: 120,
+    height: 120
   },
   title: {
     fontSize: 20,
-    color: 'white',
-    textAlign: 'center',
-    marginBottom: 20,
+    color: "white",
+    textAlign: "center",
+    marginBottom: 20
   },
   input: {
-    backgroundColor: 'white',
-    width: '100%',
+    backgroundColor: "white",
+    width: "100%",
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   text_input: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center"
   },
   button: {
-    backgroundColor: '#A32323',
+    backgroundColor: "#0d2e75",
     padding: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 5
   },
   buttonText: {
     fontSize: 20,
-    fontWeight: '700',
-    color: 'white',
-  },
+    fontWeight: "700",
+    color: "white"
+  }
 });
