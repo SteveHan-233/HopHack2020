@@ -1,0 +1,12 @@
+{
+  "name": "ParkingSpotter",
+  "displayName": "ParkingSpotter",
+  "expo": {
+    "name": "ParkingSpotter",
+    "slug": "ParkingSpotter",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
