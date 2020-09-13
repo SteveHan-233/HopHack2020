@@ -31,9 +31,7 @@ export default ({ modalOpen, setModalOpen, setCurrLot, lotData, carData }) => {
 
         {carData !== null &&
           carData.map((car, ind) => {
-            if (ind == 29) return <></>;
-            else if (!car && ind == 19) return <Car ind={18} />;
-            else if (!car || ind == 20 || ind == 28) return <Car ind={ind} />;
+            if (!car) return <Car ind={ind} />;
             else return <></>;
           })}
         <View
