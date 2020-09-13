@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import socket from "socket.io-client";
+
 import ParkingMarker from "../components/ParkingMarker";
 import ParkingModal from "../components/ParkingModal";
 import { lots } from "../const";
 
+const ENDPOINT = "http://b3c61720caab.ngrok.io";
+
 export default function Map() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [currLot, setCurrLot] = useState(null);
+  const [cars, setCars] = useState([[], [], [], [], [], []]);
+
+  useEffect(() => {
+    const s = socket(ENDPOINT);
+    console.log(s);
+    s.on("frame", data => {
+      console.log(data);
+      setCars(data);
+    });
+
+    return () => s.disconnect();
+  }, []);
   return (
     <>
       <MapView
@@ -19,16 +36,26 @@ export default function Map() {
         }}
         showsUserLocation
       >
-        {lots.map(lot => (
+        {lots.map((lot, ind) => (
           <Marker
             coordinate={lot.coordinate}
-            onPress={() => setModalOpen(true)}
+            onPress={() => {
+              setCurrLot(ind);
+              setModalOpen(true);
+            }}
+            key={ind}
           >
             <ParkingMarker percentage={60} />
           </Marker>
         ))}
       </MapView>
-      <ParkingModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <ParkingModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        setCurrLot={setCurrLot}
+        lotData={lots[currLot]}
+        carData={currLot !== null ? cars[currLot] : null}
+      />
     </>
   );
 }

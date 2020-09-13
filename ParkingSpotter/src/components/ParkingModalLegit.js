@@ -38,7 +38,9 @@ export default ({ modalOpen, setModalOpen }) => {
       <BlurView tint="light" intensity={100} style={styles.blur}>
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => setModalOpen(false)}
+          onPress={() => {
+            setModalOpen(false);
+          }}
         >
           <Ionicons name="ios-close-circle" size={30} color="#66aadb" />
         </TouchableOpacity>
